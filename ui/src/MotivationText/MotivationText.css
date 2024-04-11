@@ -1,0 +1,9 @@
+.motivation-text {
+    user-select: none;
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 3vh;
+    width: 70%;
+    text-align: center;
+    overflow-wrap: break-word;
+}

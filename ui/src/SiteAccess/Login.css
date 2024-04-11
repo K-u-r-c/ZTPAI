@@ -1,0 +1,79 @@
+body {
+    background: hsl(0, 0%, 100%);
+    margin: 0;
+    padding: 0;
+}
+
+.login-left-box {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    gap: 1rem;
+    overflow-y: auto;
+}
+
+.login-right-box {
+    background-size: cover;
+    background-position: center;
+    width: 50vw;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.login-form {
+    width: 60%;
+}
+
+.login-forgot-password {
+    text-decoration: none;
+    font-family: Montserrat;
+    font-weight: bold;
+    margin-top: 1rem;
+    color: #266ED7;
+}
+
+.login-register-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.login-register-text {
+    font-family: Montserrat;
+    font-weight: bold;
+    margin-top: 1rem;
+    color: #BABABA;
+}
+
+.login-register-button {
+    text-decoration: none;
+    font-family: Montserrat;
+    font-weight: bold;
+    color: #266ED7;
+    cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+    .login-left-box {
+        width: 100vw;
+        height: 100vh;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+        gap: .1rem;
+    }
+
+    .login-right-box {
+        display: none;
+    }
+
+    .login-form {
+        width: 70%;
+    }
+}

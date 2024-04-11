@@ -1,0 +1,101 @@
+body {
+    background: #fff;
+    margin: 0;
+}
+
+.register-content {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.register-left-box {
+    background-size: cover;
+    background-position: center;
+    width: 50vw;
+    height: 100vh;
+    left: 0;
+}
+
+.register-right-box {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    gap: 1rem;
+    overflow-y: auto;
+    position: absolute;
+    right: 0;
+}
+
+.register-form {
+    width: 60%;
+}
+
+.register-privacy-policy {
+    font-family: Montserrat;
+    font-weight: bold;
+    color: #BABABA;
+    overflow-wrap: break-word;
+    width: 50%;
+    text-align: center;
+}
+
+.register-privacy-policy-text {
+    color: #BABABA;
+}
+
+.register-privacy-policy-link {
+    text-decoration: underline;
+    color: #266ED7;
+    cursor: pointer;
+}
+
+.register-login-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.register-login-text {
+    font-family: Montserrat;
+    font-weight: bold;
+    margin-top: 1rem;
+    color: #BABABA;
+}
+
+.register-login-button {
+    text-decoration: none;
+    font-family: Montserrat;
+    font-weight: bold;
+    color: #266ED7;
+    cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+    .register-right-box {
+        width: 100vw;
+        height: 100vh;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+        gap: .1rem;
+    }
+
+    .register-left-box {
+        display: none;
+    }
+
+    .register-form {
+        width: 70%;
+    }
+
+    .register-privacy-policy {
+        font-size: 10px;
+        margin-top: 1rem;
+        width: 70%;
+    }
+}

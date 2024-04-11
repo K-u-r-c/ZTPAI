@@ -1,0 +1,30 @@
+.or-separator {
+    font-family: Montserrat;
+    font-weight: bolder;
+    width: 20vw;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+
+    &:after,
+    &:before {
+        content: "";
+        flex: 1 1;
+        border-bottom: 2px solid #C0C0C0;
+        margin: auto;
+    }
+
+    &:after {
+        margin-left: 1rem;
+    }
+
+    &:before {
+        margin-right: 1rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .or-separator {
+        width: 50%;
+    }
+}

@@ -1,0 +1,24 @@
+.logo {
+    user-select: none;
+    font-family: Montserrat;
+    font-weight: bolder;
+    width: 100%;
+    text-align: center;
+    color: black;
+}
+
+.logo.large {
+    font-size: 10vh;
+}
+
+.logo.small {
+    font-size: 5vh;
+}
+
+.logo-e {
+    color: #6EBE45;
+}
+
+.logo-s {
+    color: #558EE0;
+}
