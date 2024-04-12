@@ -1,0 +1,54 @@
+li {
+  list-style-type: none;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem 0 1.8rem;
+  box-sizing: border-box;
+}
+
+li:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+li:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.status-element {
+  height: 70%;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  border-radius: 100%;
+  background: url() no-repeat 50% / cover;
+  background-color: black;
+}
+
+.forum-text {
+  text-decoration: none;
+  font-family: Montserrat;
+  font-weight: bold;
+  color: #266ED7;
+  width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 0.5rem;
+}
+
+.posted-by-element {
+  height: 70%;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  border-radius: 100%;
+  background: url() no-repeat 50% / cover;
+  background-color: black;
+}
+
+span {
+  font-family: Montserrat;
+  font-weight: bolder;
+  width: 8%;
+}

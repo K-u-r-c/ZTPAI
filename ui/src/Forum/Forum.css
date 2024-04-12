@@ -1,0 +1,17 @@
+.forum-content {
+  display: flex;
+  flex-direction: column;
+  float: right;
+}
+
+.forum-content {
+  flex-grow: 1;
+}
+
+.forum-elements {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  overflow: scroll;
+  scrollbar-width: none;
+}

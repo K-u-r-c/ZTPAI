@@ -6,16 +6,37 @@ import OrSeparator from "../OrSeparator/OrSeparator";
 import MotivationText from "../MotivationText/MotivationText";
 import InputField from "../FormFields/InputField";
 import SubmitButton from "../FormFields/SubmitButton";
+import axios from "axios";
 
 function Register() {
   const registerImageUrl = "images/register-image.jpg";
+
+  const [formData, setFormData] = useState({
+    email: "",
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const url = `${process.env.REACT_APP_API_URL}/register`;
+    fetch(url, { method: "POST" })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+      });
+  };
 
   return (
     <div className="register-content">
       <div className="register-right-box">
         <Logo size="large" />
         <MotivationText text="Let's create your EyeSmart account" />
-        <form action="register" method="POST" className="register-form">
+        <form className="register-form" onSubmit={handleSubmit}>
           {/* Email field */}
           <InputField
             type="text"
@@ -23,6 +44,7 @@ function Register() {
             placeholder="E-mail:"
             id="email"
             ariaLabel="Email"
+            value={formData.email}
             ariaDescribedby="basic-addon1"
             icon="envelope-fill"
           />
@@ -34,6 +56,7 @@ function Register() {
             placeholder="Username:"
             id="username"
             ariaLabel="Username"
+            value={formData.username}
             ariaDescribedby="basic-addon1"
             icon="person-fill"
           />
@@ -45,6 +68,7 @@ function Register() {
             placeholder="Password:"
             id="password"
             ariaLabel="Password"
+            value={formData.password}
             ariaDescribedby="basic-addon2"
             icon="lock-fill"
           />

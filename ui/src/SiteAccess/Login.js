@@ -11,18 +11,38 @@ import SubmitButton from "../FormFields/SubmitButton";
 function Login() {
   const loginImageUrl = "images/login-image.jpg";
 
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const url = `${process.env.REACT_APP_API_URL}/login`;
+    fetch(url, { method: "POST" })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+      });
+  };
+
   return (
     <div className="login-content">
       <div className="login-left-box">
         <Logo size="large" />
         <MotivationText text="Let's log in to your EyeSmart account" />
-        <form action="login" method="POST" className="login-form">
+        <form className="login-form" onSubmit={handleSubmit}>
           {/* Email field */}
           <InputField
             type="text"
             name="email"
             placeholder="E-mail:"
             id="email"
+            value={formData.email}
             ariaLabel="Email"
             ariaDescribedby="basic-addon1"
             icon="envelope-fill"
@@ -34,6 +54,7 @@ function Login() {
             name="password"
             placeholder="Password:"
             id="password"
+            value={formData.password}
             ariaLabel="Password"
             ariaDescribedby="basic-addon2"
             icon="lock-fill"

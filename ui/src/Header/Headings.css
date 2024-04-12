@@ -1,0 +1,49 @@
+.headings {
+  width: 100%;
+  height: 4vh;
+  z-index: 8;
+  background-color: #F8F8F8;
+  box-shadow: 0px 2px 0px 0px rgba(220, 220, 220);
+  font-family: Montserrat;
+  font-size: large;
+  font-weight: bolder;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  color: #C0C0C0;
+}
+
+.headings-status {
+  float: left;
+  width: 50px;
+  margin-left: -8px;
+}
+
+.headings-topics {
+  float: left;
+  width: 50%;
+  margin-left: -8px;
+}
+
+.headings-replies {
+  float: left;
+  width: 8%;
+  margin-left: -36px;
+}
+
+.headings-views {
+  float: left;
+  width: 8%;
+}
+
+.headings-users {
+  float: left;
+  width: 42px;
+}
+
+.headings-date {
+  float: left;
+  width: 8%;
+}
