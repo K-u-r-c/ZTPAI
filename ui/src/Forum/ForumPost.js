@@ -1,8 +1,8 @@
 import "./ForumPost.css";
 
-function ForumPost({ title, replies, views, poster, status, date }) {
+function ForumPost({ id, title, replies, views, poster, status, date }) {
   return (
-    <li className="forum-post">
+    <li key={id} className="forum-post">
       <a href="#" className="status-element">
         {status}
       </a>

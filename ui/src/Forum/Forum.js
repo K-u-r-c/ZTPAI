@@ -54,6 +54,7 @@ function Forum() {
         <ul className="forum-elements">
           {posts.map((post) => (
             <ForumPost
+              key={post.title} // TODO: LATER CHANGE TO POST ID
               title={post.title}
               replies={post.replies}
               views={post.views}
