@@ -1,4 +1,4 @@
-li {
+.forum-post {
   list-style-type: none;
   height: 60px;
   width: 100%;
@@ -9,15 +9,15 @@ li {
   box-sizing: border-box;
 }
 
-li:nth-child(even) {
+.forum-post:nth-child(even) {
   background-color: #f8f8f8;
 }
 
-li:nth-child(odd) {
+.forum-post:nth-child(odd) {
   background-color: #ffffff;
 }
 
-.status-element {
+.forum-post .status-element {
   height: 70%;
   aspect-ratio: 1 / 1;
   flex-shrink: 0;
@@ -26,7 +26,7 @@ li:nth-child(odd) {
   background-color: black;
 }
 
-.forum-text {
+.forum-post .forum-text {
   text-decoration: none;
   font-family: Montserrat;
   font-weight: bold;
@@ -38,7 +38,7 @@ li:nth-child(odd) {
   padding-left: 0.5rem;
 }
 
-.posted-by-element {
+.forum-post .posted-by-element {
   height: 70%;
   aspect-ratio: 1 / 1;
   flex-shrink: 0;
@@ -47,8 +47,18 @@ li:nth-child(odd) {
   background-color: black;
 }
 
-span {
+.forum-post span {
   font-family: Montserrat;
   font-weight: bolder;
   width: 8%;
+}
+
+@media screen and (max-width: 768px) {
+  .forum-post span {
+    display: none;
+  }
+
+  .forum-post .posted-by-element {
+    display: none;
+  }
 }

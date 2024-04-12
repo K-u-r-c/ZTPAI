@@ -26,3 +26,13 @@
 .logo-s {
     color: #558EE0;
 }
+
+@media screen and (max-width: 768px) {
+    .logo.large {}
+
+    .logo.medium {}
+
+    .logo.small {
+        font-size: 4rem;
+    }
+}

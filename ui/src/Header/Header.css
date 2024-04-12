@@ -18,3 +18,9 @@
   margin-top: auto;
   margin-bottom: auto;
 }
+
+@media screen and (max-width: 768px) {
+  .page-title {
+    font-size: 1.4rem;
+  }
+}

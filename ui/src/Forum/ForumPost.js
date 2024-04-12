@@ -2,7 +2,7 @@ import "./ForumPost.css";
 
 function ForumPost({ title, replies, views, poster, status, date }) {
   return (
-    <li>
+    <li className="forum-post">
       <a href="#" className="status-element">
         {status}
       </a>

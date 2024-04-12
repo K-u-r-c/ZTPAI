@@ -47,3 +47,21 @@
   float: left;
   width: 8%;
 }
+
+@media screen and (max-width: 768px) {
+  .headings-replies {
+    display: none;
+  }
+
+  .headings-views {
+    display: none;
+  }
+
+  .headings-users {
+    display: none;
+  }
+
+  .headings-date {
+    display: none;
+  }
+}

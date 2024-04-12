@@ -3,7 +3,8 @@ import "./Sidebar.css";
 import Logo from "../Logo/Logo";
 
 function Sidebar() {
-  const [isSidebarVisible, setSidebarVisible] = useState(true);
+  const isMobile = window.innerWidth <= 768;
+  const [isSidebarVisible, setSidebarVisible] = useState(!isMobile);
 
   const toggleLeftBarButton = () => {
     setSidebarVisible(!isSidebarVisible);

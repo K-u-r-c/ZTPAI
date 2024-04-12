@@ -1,3 +1,8 @@
+.sidebar {
+  display: flex;
+  flex-direction: row;
+}
+
 .left-bar-small {
   float: left;
   display: flex;
@@ -109,4 +114,39 @@
   width: 15vw;
   visibility: visible;
   transition: width 0.5s, opacity 0.5s, visibility 0.5s ease-out;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+  }
+
+  .left-bar-small {
+    width: 10vw;
+  }
+
+  .left-bar-big.visible {
+    width: calc(100vw - 10vw);
+  }
+
+  .sidebar-links p {
+    font-size: 2rem;
+  }
+
+  .icon-text {
+    font-size: 1.5rem;
+  }
+
+  .icon-text span {
+    font-family: Montserrat;
+    font-weight: bolder;
+  }
+
+  .sidebar-links ul {
+    margin-left: 0.5rem;
+  }
+
+  .sidebar-links li {
+    margin-left: 1rem;
+  }
 }
