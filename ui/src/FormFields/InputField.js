@@ -2,6 +2,7 @@ import React from "react";
 import "./InputField.css";
 
 function InputField({
+  onChange,
   type,
   name,
   placeholder,
@@ -23,6 +24,7 @@ function InputField({
         placeholder={placeholder}
         required
         id={id}
+        onChange={onChange}
         className="form-control"
         aria-label={ariaLabel}
         aria-describedby={ariaDescribedby}

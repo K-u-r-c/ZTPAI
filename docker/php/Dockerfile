@@ -1,30 +1,44 @@
 
-FROM php:8-fpm-alpine
+FROM php:8.2.9-fpm
 
 LABEL Jakub Kurc <jak.kurc@gmail.com>
 
-RUN apk update \
-    && apk add git \
-        curl \
-        vim \
-        wget \
-        bash \
-        zlib \
-        zlib-dev \
-        patch \
-        icu-dev \
-        linux-headers
+ENV RUN_DEPS \
+    zlib1g \
+    libzip4 \
+    libpng16-16 \
+    libjpeg62-turbo \
+    libpq5
 
-# install linux headers
-RUN apk add --no-cache linux-headers
+ENV BUILD_DEPS \
+    zlib1g-dev \
+    libzip-dev \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libpq-dev
 
-# install php dependencies
-RUN apk add --no-cache $PHPIZE_DEPS \
-    && pecl install -f xdebug \
-    && docker-php-ext-install intl opcache bcmath sockets \
-    && docker-php-ext-enable xdebug intl opcache bcmath sockets \
-    && rm -rf /var/lib/apt/lists/* \
-    || (echo "Build failed, here are the contents of /tmp/pear/temp/xdebug:" && ls -la /tmp/pear/temp/xdebug && exit 1)
+ENV PHP_EXTENSIONS \
+    opcache \
+    zip \
+    gd \
+    bcmath \
+    pgsql \
+    pdo_pgsql
+
+# Install required packages and development tools
+RUN apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS \
+    && docker-php-ext-configure gd --with-jpeg \
+    && docker-php-ext-install -j "$(nproc)" $PHP_EXTENSIONS \
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install runtime dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends $RUN_DEPS \
+    && rm -rf /var/lib/apt/lists/*
+
+# Debug
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
 
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

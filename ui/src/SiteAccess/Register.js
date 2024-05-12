@@ -6,7 +6,6 @@ import OrSeparator from "../OrSeparator/OrSeparator";
 import MotivationText from "../MotivationText/MotivationText";
 import InputField from "../FormFields/InputField";
 import SubmitButton from "../FormFields/SubmitButton";
-import axios from "axios";
 
 function Register() {
   const registerImageUrl = "images/register-image.jpg";
@@ -15,19 +14,26 @@ function Register() {
     email: "",
     username: "",
     password: "",
+    repeatPassword: "",
   });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = `${process.env.REACT_APP_API_URL}/register`;
-    fetch(url, { method: "POST" })
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
       .then((res) => res.json())
       .then((result) => {
         console.log(result);
+        if (result.success) {
+          localStorage.setItem("token", result.token);
+          window.location.href = "/forum";
+        }
       });
   };
 
@@ -39,6 +45,9 @@ function Register() {
         <form className="register-form" onSubmit={handleSubmit}>
           {/* Email field */}
           <InputField
+            onChange={(e) => {
+              setFormData({ ...formData, email: e.target.value });
+            }}
             type="text"
             name="email"
             placeholder="E-mail:"
@@ -51,6 +60,9 @@ function Register() {
 
           {/* Username field */}
           <InputField
+            onChange={(e) => {
+              setFormData({ ...formData, username: e.target.value });
+            }}
             type="text"
             name="username"
             placeholder="Username:"
@@ -63,6 +75,9 @@ function Register() {
 
           {/* Password field */}
           <InputField
+            onChange={(e) => {
+              setFormData({ ...formData, password: e.target.value });
+            }}
             type="password"
             name="password"
             placeholder="Password:"
@@ -75,6 +90,9 @@ function Register() {
 
           {/* Repeat Password field */}
           <InputField
+            onChange={(e) => {
+              setFormData({ ...formData, repeatPassword: e.target.value });
+            }}
             type="password"
             name="repeat-password"
             placeholder="Repeat password:"

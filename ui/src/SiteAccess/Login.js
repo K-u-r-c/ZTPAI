@@ -16,17 +16,22 @@ function Login() {
     password: "",
   });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = `${process.env.REACT_APP_API_URL}/login`;
-    fetch(url, { method: "POST" })
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        if (result.success) {
+          localStorage.setItem("token", result.token);
+          window.location.href = "/forum";
+        }
       });
   };
 
@@ -35,14 +40,17 @@ function Login() {
       <div className="login-left-box">
         <Logo size="large" />
         <MotivationText text="Let's log in to your EyeSmart account" />
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit} method="POST">
           {/* Email field */}
           <InputField
+            onChange={(e) => {
+              setFormData({ ...formData, email: e.target.value });
+            }}
             type="text"
             name="email"
             placeholder="E-mail:"
             id="email"
-            value={formData.email}
+            value=""
             ariaLabel="Email"
             ariaDescribedby="basic-addon1"
             icon="envelope-fill"
@@ -50,15 +58,19 @@ function Login() {
 
           {/* Password field */}
           <InputField
+            onChange={(e) => {
+              setFormData({ ...formData, password: e.target.value });
+            }}
             type="password"
             name="password"
             placeholder="Password:"
             id="password"
-            value={formData.password}
+            value=""
             ariaLabel="Password"
             ariaDescribedby="basic-addon2"
             icon="lock-fill"
           />
+
           <SubmitButton
             text="Sign In"
             color="#fff"
