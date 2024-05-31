@@ -6,12 +6,14 @@ use App\Repository\PostRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
+    #[Groups('post')]
     #[ORM\Column]
     private ?int $id = null;
 
@@ -21,18 +23,22 @@ class Post
     #[ORM\ManyToOne(inversedBy: 'posts')]
     private ?User $userId = null;
 
+    #[Groups('post')]
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[Groups('post')]
     #[ORM\Column(length: 255)]
     private ?string $content = null;
 
+    #[Groups('post')]
     #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $postedAt = null;
 
     /**
      * @var Collection<int, Reply>
      */
+    #[Groups('post')]
     #[ORM\OneToMany(targetEntity: Reply::class, mappedBy: 'postId')]
     private Collection $replies;
 

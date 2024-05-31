@@ -22,7 +22,6 @@ class SecurityController extends AbstractController {
 
   #[Route('/login', name: 'login', methods: ['POST'])]
   public function login(Request $request) {
-    // handle the login using the JWT token
     $data = json_decode($request->getContent(), true);
     $email = $data['email'];
     $password = $data['password'];
@@ -44,6 +43,10 @@ class SecurityController extends AbstractController {
     } catch (\Exception $e) {
       throw new BadRequestException("Token generation failed: " . $e->getMessage());
     }
+
+    $user->setLastLogin(new \DateTimeImmutable());
+    $this->entityManager->persist($user);
+    $this->entityManager->flush();
 
     return new JsonResponse(['success'=>true, 'token'=>$token], Response::HTTP_OK);
   }
@@ -87,5 +90,10 @@ class SecurityController extends AbstractController {
     }
 
     return new JsonResponse(['success'=>true, 'token'=>$token], Response::HTTP_CREATED);
+  }
+
+  #[Route('/logout', name: 'logout', methods: ['POST'])]
+  public function logout(Request $request) {
+    return new JsonResponse(['success'=>true], Response::HTTP_OK);
   }
 }

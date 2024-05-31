@@ -69,7 +69,6 @@ services:
 
 networks:
   monitoring:
-    driver: bridge
   db_net:
 
 # volumes

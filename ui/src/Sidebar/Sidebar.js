@@ -19,7 +19,7 @@ function Sidebar() {
           onClick={toggleLeftBarButton}
         ></i>
         <a href="#" className="help-sidebar"></a>
-        <a href="#" className="user-sidebar"></a>
+        <a href="user" className="user-sidebar"></a>
       </div>
 
       <div
@@ -43,7 +43,7 @@ function Sidebar() {
             <li>
               <div className="icon-text">
                 <i className="bi bi-people-fill"></i>
-                <a href="#">
+                <a href="forum">
                   <span>General</span>
                 </a>
               </div>

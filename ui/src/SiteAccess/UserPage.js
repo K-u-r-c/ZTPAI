@@ -1,9 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./UserPage.css";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 
 function UserPage() {
+  const [userData, setUserData] = useState({
+    username: "",
+    email: "",
+  });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const url = `${process.env.REACT_APP_API_URL}/api/user/me`;
+      const token = localStorage.getItem("token");
+      const response = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const userData = await response.json();
+      setUserData(userData);
+    };
+
+    fetchUserData();
+  }, []);
+
   return (
     <div style={{ display: "flex" }}>
       <Sidebar />
@@ -14,7 +35,7 @@ function UserPage() {
         <div className="profile-container">
           <div className="profile-header">
             <img src="" alt="Profile Picture" width="200" />
-            <h1>Username</h1>
+            <h1>{userData.username}</h1>
           </div>
 
           <form
@@ -80,7 +101,9 @@ function UserPage() {
 
             <div className="form-field">
               <input type="submit" value="Save" id="submit-button" />
-              <a className="logout-button">Logout</a>
+              <a href="logout" className="logout-button">
+                Logout
+              </a>
             </div>
           </form>
         </div>

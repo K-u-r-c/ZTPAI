@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReplyRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ReplyRepository::class)]
 class Reply
@@ -11,6 +12,7 @@ class Reply
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('reply')]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'replies')]
@@ -20,9 +22,11 @@ class Reply
     private ?User $userId = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('reply')]
     private ?string $content = null;
 
     #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
+    #[Groups('reply')]
     private ?\DateTimeImmutable $repliedAt = null;
 
     public function getId(): ?int

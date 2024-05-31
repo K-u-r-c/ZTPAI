@@ -6,6 +6,7 @@ import OrSeparator from "../OrSeparator/OrSeparator";
 import MotivationText from "../MotivationText/MotivationText";
 import InputField from "../FormFields/InputField";
 import SubmitButton from "../FormFields/SubmitButton";
+import axios from "axios";
 
 function Register() {
   const registerImageUrl = "images/register-image.jpg";
@@ -20,14 +21,17 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = `${process.env.REACT_APP_API_URL}/register`;
-    fetch(url, {
+    const token = localStorage.getItem("token");
+    axios({
       method: "POST",
+      url: url,
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(formData),
+      data: JSON.stringify(formData),
     })
-      .then((res) => res.json())
+      .then((res) => res.data)
       .then((result) => {
         console.log(result);
         if (result.success) {
