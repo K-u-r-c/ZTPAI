@@ -62,6 +62,7 @@ function Clock() {
 
       if (response.status === 200) {
         setIsActive(true);
+        setNotifications([]);
         setSeconds(0);
       } else {
         console.log("Failed to start session");
@@ -103,8 +104,9 @@ function Clock() {
       const totalSeconds = dateIntervalToSeconds(session.totalTime);
       setSeconds(totalSeconds);
       fetchNotifications();
-    } else {
-      console.log("Failed to fetch last session");
+    } else if (response.status === 401) {
+      console.log("Unauthorized");
+      window.location.href = "/login";
     }
   };
 
@@ -156,7 +158,7 @@ function Clock() {
     if (isActive) {
       id = setInterval(async () => {
         setSeconds((seconds) => seconds + 1);
-        if (seconds % 60 === 4 && seconds !== 0) {
+        if (seconds % 60 === 0 && seconds !== 0) {
           var notification_message = await fetchNotification();
 
           if ("Notification" in window) {

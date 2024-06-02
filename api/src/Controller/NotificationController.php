@@ -39,8 +39,6 @@ class NotificationController extends AbstractController {
 
   #[Route('/api/clock/get_notifications', name: 'get_notifications', methods: ['GET'])]
   public function getNotifications(Request $request) {
-    $data = json_decode($request->getContent(), true);
-
     $session = $this->entityManager->getRepository(Session::class)->findOneBy(['user_id' => $this->getUser()], ['id' => 'DESC']);
 
     $sessionTime = $session->getStartTime();
