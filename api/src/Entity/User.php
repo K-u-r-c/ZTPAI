@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -27,39 +28,51 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('user')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('user')]
     private ?string $username = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('user')]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('user')]
     private ?string $password = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('user')]
     private ?string $first_name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('user')]
     private ?string $last_name = null;
 
     #[ORM\Column(type: Types::SIMPLE_ARRAY, nullable: true)]
+    #[Groups('user')]
     private ?array $phone_number = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('user')]
     private ?string $profile_picture_url = null;
 
     #[ORM\Column]
+    #[Groups('user')]
     private array $roles = [];
 
     #[ORM\Column]
+    #[Groups('user')]
     private bool $is_authenticated = false;
 
     #[ORM\Column(type: "datetime_immutable", options: ["default" => "CURRENT_TIMESTAMP"])]
+    #[Groups('user')]
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('user')]
     private ?\DateTimeImmutable $last_login = null;
 
     /**

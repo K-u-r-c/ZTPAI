@@ -36,6 +36,11 @@ function Login() {
         if (result.success) {
           localStorage.setItem("token", result.token);
           window.location.href = "/forum";
+        } else {
+          const passwordWarning = document.getElementById("password-warning");
+          passwordWarning.style.display = "block";
+          passwordWarning.style.color = "red";
+          passwordWarning.innerHTML = result.message;
         }
       });
   };
@@ -82,6 +87,7 @@ function Login() {
             backgroundColor="#28a745"
             hoverBackgroundColor="#218838"
           />
+          <p id="password-warning" style={{ display: "none" }}></p>
         </form>
         <a href="#" className="login-forgot-password">
           Forgot password ?

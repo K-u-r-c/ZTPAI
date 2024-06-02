@@ -32,6 +32,10 @@ class Post
     private ?string $content = null;
 
     #[Groups('post')]
+    #[ORM\Column(type: "integer")]
+    private ?int $views = 0;
+
+    #[Groups('post')]
     #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $postedAt = null;
 
@@ -139,6 +143,25 @@ class Post
                 $reply->setPostId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getViews(): ?int
+    {
+        return $this->views;
+    }
+
+    public function setViews(?int $views): self
+    {
+        $this->views = $views;
+
+        return $this;
+    }
+
+    public function incrementViews(): self
+    {
+        $this->views++;
 
         return $this;
     }

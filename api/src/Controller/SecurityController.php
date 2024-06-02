@@ -31,11 +31,11 @@ class SecurityController extends AbstractController {
       ->findOneBy(["email" => $email]);
 
     if (!$user) {
-      throw new BadRequestException("User not found");
+      return new JsonResponse(['message' => 'User not found'], Response::HTTP_OK);
     }
 
     if (!$this->userPasswordHasher->isPasswordValid($user, $password)) {
-      throw new BadRequestException("Invalid password");
+      return new JsonResponse(['message' => 'Invalid password'], Response::HTTP_OK);
     }
 
     try {
@@ -75,6 +75,8 @@ class SecurityController extends AbstractController {
     $user->setEmail($email);
     $user->setUsername($username);
     $user->setPassword($this->userPasswordHasher->hashPassword($user, $password));
+
+    $user->setProfilePictureUrl('/images/default_user_profile.png');
 
     $this->entityManager->persist($user);
     $this->entityManager->flush();
