@@ -66,7 +66,9 @@ function Forum() {
       .then((res) => res.data)
       .then((result) => {
         if (result.success) {
-          fetchPosts();
+          fetchPosts().then(() => {
+            setShowForm(false);
+          });
         }
       });
   };
@@ -106,10 +108,11 @@ function Forum() {
             posts.map((post) => (
               <ForumPost
                 key={post.id}
+                id={post.id}
                 title={post.title}
                 replies={post.replies.length}
                 views={post.views}
-                poster={post.poster}
+                poster={post.userId}
                 status={post.status}
                 date={formatDate(post.postedAt)}
               />

@@ -1,0 +1,43 @@
+.post-reply {
+  display: flex;
+  list-style-type: none;
+  flex-direction: column;
+}
+
+.post-reply:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+.post-reply:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.post-reply-header {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 2.5rem 0 1.8rem;
+  box-sizing: border-box;
+}
+
+.replied-by-element {
+  height: 70%;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  border-radius: 100%;
+  background: url() no-repeat 50% / cover;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.post-reply-header-text {
+  display: flex;
+  margin-left: 1rem;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.post-reply-content {
+  padding: 0 2.5rem 0 1.8rem;
+  overflow: visible;
+}

@@ -21,6 +21,7 @@ class Post
     private ?Category $categoryId = null;
 
     #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[Groups('post')]
     private ?User $userId = null;
 
     #[Groups('post')]
@@ -28,11 +29,11 @@ class Post
     private ?string $title = null;
 
     #[Groups('post')]
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 10000)]
     private ?string $content = null;
 
     #[Groups('post')]
-    #[ORM\Column(type: "integer")]
+    #[ORM\Column(type: "integer", options: ['default' => 0])]
     private ?int $views = 0;
 
     #[Groups('post')]

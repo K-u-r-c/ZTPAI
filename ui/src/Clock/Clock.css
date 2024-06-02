@@ -1,0 +1,48 @@
+.clock-content {
+  display: flex;
+  flex-direction: column;
+  float: right;
+  flex-grow: 1;
+
+  align-items: center;
+}
+
+.clock {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 auto;
+  margin-top: 50px;
+  position: relative;
+}
+
+.start-button,
+.reset-button {
+  display: block;
+  aspect-ratio: 1/1;
+  margin: 0 auto;
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #6EBE45;
+  border: none;
+  border-radius: 10%;
+}
+
+.clock-info {
+  margin-top: 2rem;
+}
+
+
+/* php bin/console make:migration */

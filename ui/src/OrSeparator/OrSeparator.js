@@ -1,8 +1,8 @@
 import React from "react";
 import "./OrSeparator.css";
 
-function OrSeparator() {
-  return <div className="or-separator">OR</div>;
+function OrSeparator({ text }) {
+  return <div className="or-separator">{text}</div>;
 }
 
 export default OrSeparator;

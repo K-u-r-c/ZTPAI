@@ -92,7 +92,7 @@ function Login() {
         <a href="#" className="login-forgot-password">
           Forgot password ?
         </a>
-        <OrSeparator />
+        <OrSeparator text={"OR"} />
         <GoogleSignInButton />
         <div className="login-register-block">
           <p className="login-register-text">Don't have an account?</p>

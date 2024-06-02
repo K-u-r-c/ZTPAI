@@ -19,9 +19,10 @@ class Reply
     private ?Post $postId = null;
 
     #[ORM\ManyToOne(inversedBy: 'replies')]
+    #[Groups('reply')]
     private ?User $userId = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 10000)]
     #[Groups('reply')]
     private ?string $content = null;
 

@@ -19,7 +19,7 @@ function Sidebar() {
           onClick={toggleLeftBarButton}
         ></i>
         <a href="#" className="help-sidebar"></a>
-        <a href="user" className="user-sidebar"></a>
+        <a href="/user" className="user-sidebar"></a>
       </div>
 
       <div
@@ -32,7 +32,7 @@ function Sidebar() {
             <li>
               <div className="icon-text">
                 <i className="bi bi-clock-fill"></i>
-                <a href="#">
+                <a href="/clock">
                   <span>Clock</span>
                 </a>
               </div>
@@ -43,7 +43,7 @@ function Sidebar() {
             <li>
               <div className="icon-text">
                 <i className="bi bi-people-fill"></i>
-                <a href="forum">
+                <a href="/forum">
                   <span>General</span>
                 </a>
               </div>

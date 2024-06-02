@@ -44,7 +44,7 @@
   flex-shrink: 0;
   border-radius: 100%;
   background: url() no-repeat 50% / cover;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .forum-post span {

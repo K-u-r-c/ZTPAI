@@ -4,6 +4,8 @@ import Login from "./SiteAccess/Login";
 import Register from "./SiteAccess/Register";
 import Forum from "./Forum/Forum";
 import UserPage from "./SiteAccess/UserPage";
+import Post from "./Forum/Post";
+import Clock from "./Clock/Clock";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/forum" element={<Forum />} />
         <Route path="/user" element={<UserPage />} />
         <Route path="/logout" element={<Login />} />
+        <Route path="/forum/post/:id" element={<Post />} />
+        <Route path="/clock" element={<Clock />} />
       </Routes>
     </Router>
   );

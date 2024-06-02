@@ -11,6 +11,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use App\Entity\Post;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Category;
+use App\Entity\Reply;
 
 class PostsController extends AbstractController {
   public function __construct(
@@ -24,7 +25,7 @@ class PostsController extends AbstractController {
       ->getRepository(Post::class)
       ->findAll();
 
-    $json = $this->serializer->serialize($posts, 'json', ['groups' => ['post']]);
+    $json = $this->serializer->serialize($posts, 'json', ['groups' => ['post', 'user']]);
     return new JsonResponse($json, json: true);
   }
 
@@ -38,8 +39,23 @@ class PostsController extends AbstractController {
       return new JsonResponse(['error' => 'Post not found'], Response::HTTP_NOT_FOUND);
     }
 
-    $json = $this->serializer->serialize($post, 'json', ['groups' => ['post']]);
+    $json = $this->serializer->serialize($post, 'json', ['groups' => ['post', 'reply', 'user']]);
     return new JsonResponse($json, json: true);
+  }
+
+
+  #[Route('/api/forum/post/{id}/incrementViews', name: 'increment_views', methods: ['GET'])]
+  public function incrementViews($id)
+  {
+      $post = $this->entityManager
+        ->getRepository(Post::class)
+        ->find($id);
+
+      $post->incrementViews();
+      $this->entityManager->persist($post);
+      $this->entityManager->flush();
+
+      return new JsonResponse(['message' => 'Views incremented']);
   }
 
   #[Route('/api/forum/create_post', name: 'create_post', methods: ['POST'])]
@@ -62,5 +78,29 @@ class PostsController extends AbstractController {
     $this->entityManager->flush();
 
     return new JsonResponse(['success' => true, 'id' => $post->getId()], Response::HTTP_CREATED);
+  }
+
+  #[Route('/api/forum/create_reply', name: 'create_reply', methods: ['POST'])]
+  public function createReply(Request $request): JsonResponse {
+      $data = json_decode($request->getContent(), true);
+
+      $post = $this->entityManager
+          ->getRepository(Post::class)
+          ->find($data['postId']);
+
+      if (!$post) {
+          return new JsonResponse(['error' => 'Post not found'], Response::HTTP_NOT_FOUND);
+      }
+
+      $reply = new Reply();
+      $reply->setPostId($post);
+      $reply->setUserId($this->getUser());
+      $reply->setContent($data['content']);
+      $reply->setRepliedAt(new \DateTimeImmutable());
+
+      $this->entityManager->persist($reply);
+      $this->entityManager->flush();
+
+      return new JsonResponse(['success' => true, 'id' => $reply->getId()], Response::HTTP_CREATED);
   }
 }
