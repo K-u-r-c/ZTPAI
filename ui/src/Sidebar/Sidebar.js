@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Sidebar.css";
 import Logo from "../Logo/Logo";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Sidebar() {
   const isMobile = window.innerWidth <= 768;

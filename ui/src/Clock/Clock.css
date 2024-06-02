@@ -25,24 +25,22 @@
   position: relative;
 }
 
-.start-button,
-.reset-button {
+.start-button {
   display: block;
   aspect-ratio: 1/1;
   margin: 0 auto;
   margin: 20px;
-  padding: 10px 20px;
-  font-size: 3rem;
+  padding: 10px 60px;
+  font-size: 6rem;
   font-weight: bold;
   color: #fff;
   background-color: #6EBE45;
   border: none;
   border-radius: 10%;
+  align-items: center;
+  justify-content: center;
 }
 
 .clock-info {
   margin-top: 2rem;
 }
-
-
-/* php bin/console make:migration */

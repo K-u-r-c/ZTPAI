@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SessionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: SessionRepository::class)]
 class Session
@@ -14,15 +15,19 @@ class Session
     private ?int $id = null;
 
     #[ORM\ManyToOne]
+    #[Groups('session')]
     private ?User $user_id = null;
 
     #[ORM\Column]
+    #[Groups('session')]
     private ?\DateTimeImmutable $startTime = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
+    #[Groups('session')]
     private ?\DateTimeImmutable $endTime = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('session')]
     private ?\DateInterval $totalTime = null;
 
     public function getId(): ?int

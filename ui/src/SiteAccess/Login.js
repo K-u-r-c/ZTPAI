@@ -8,9 +8,11 @@ import MotivationText from "../MotivationText/MotivationText";
 import InputField from "../FormFields/InputField";
 import SubmitButton from "../FormFields/SubmitButton";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const loginImageUrl = "images/login-image.jpg";
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -35,7 +37,7 @@ function Login() {
       .then((result) => {
         if (result.success) {
           localStorage.setItem("token", result.token);
-          window.location.href = "/forum";
+          navigate("/clock");
         } else {
           const passwordWarning = document.getElementById("password-warning");
           passwordWarning.style.display = "block";

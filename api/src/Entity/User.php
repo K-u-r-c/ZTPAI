@@ -93,12 +93,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Reply::class, mappedBy: 'userId')]
     private Collection $replies;
 
+    /**
+     * @var Collection<int, SentNotifications>
+     */
+    #[ORM\ManyToMany(targetEntity: SentNotifications::class, mappedBy: 'sent_to_user')]
+    private Collection $sentNotifications;
+
     public function __construct()
     {
         $this->notifications = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
         $this->replies = new ArrayCollection();
+        $this->sentNotifications = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -326,6 +333,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($reply->getUserId() === $this) {
                 $reply->setUserId(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SentNotifications>
+     */
+    public function getSentNotifications(): Collection
+    {
+        return $this->sentNotifications;
+    }
+
+    public function addSentNotification(SentNotifications $sentNotification): static
+    {
+        if (!$this->sentNotifications->contains($sentNotification)) {
+            $this->sentNotifications->add($sentNotification);
+            $sentNotification->addSentToUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSentNotification(SentNotifications $sentNotification): static
+    {
+        if ($this->sentNotifications->removeElement($sentNotification)) {
+            $sentNotification->removeSentToUser($this);
         }
 
         return $this;
