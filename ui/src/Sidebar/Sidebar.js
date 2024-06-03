@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Sidebar.css";
 import Logo from "../Logo/Logo";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   const isMobile = window.innerWidth <= 768;
@@ -33,9 +33,9 @@ function Sidebar() {
             <li>
               <div className="icon-text">
                 <i className="bi bi-clock-fill"></i>
-                <a href="/clock">
+                <Link to="/clock">
                   <span>Clock</span>
-                </a>
+                </Link>
               </div>
             </li>
           </ul>
@@ -44,17 +44,17 @@ function Sidebar() {
             <li>
               <div className="icon-text">
                 <i className="bi bi-people-fill"></i>
-                <a href="/forum">
+                <Link to="/forum">
                   <span>General</span>
-                </a>
+                </Link>
               </div>
             </li>
             <li>
               <div className="icon-text">
                 <i className="bi bi-person-check-fill"></i>
-                <a href="#">
+                <Link to="#">
                   <span>Experts</span>
-                </a>
+                </Link>
               </div>
             </li>
           </ul>

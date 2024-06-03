@@ -151,6 +151,10 @@ function Clock() {
 
   useEffect(() => {
     fetchLastSession();
+
+    return () => {
+      reset();
+    };
   }, []);
 
   useEffect(() => {
